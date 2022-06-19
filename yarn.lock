@@ -2,7 +2,6 @@
 # yarn lockfile v1
 
 
-lgtv-ip-control@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/lgtv-ip-control/-/lgtv-ip-control-1.2.0.tgz#f5d590c5e0fe66ebd06a11c4217b8a9a3db5a489"
-  integrity sha512-FLWAmPijq6Xtnl5zf9dLfa15nVHzenoonpQGb2jTGZtFqpDmm6jllW0IjtzuNzGuttCve4tUq4iv5QBcwauNHg==
+"lgtv-ip-control@github:llamafilm/lgtv-ip-control":
+  version "1.2.1"
+  resolved "https://codeload.github.com/llamafilm/lgtv-ip-control/tar.gz/acfa4352fc533bf2a81b76f8a75698c7cd7e6fc5"

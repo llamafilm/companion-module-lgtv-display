@@ -1,5 +1,5 @@
 const instance_skel = require('../../instance_skel')
-const { LGTV, Inputs, EnergySavingLevels, Keys, DefaultSettings } = require('lgtv-ip-control')
+const { LGTV, Inputs, EnergySavingLevels, Keys, Apps, DefaultSettings } = require('lgtv-ip-control')
 
 class instance extends instance_skel {
 	/**
@@ -16,6 +16,7 @@ class instance extends instance_skel {
 		// initialize enums to read from module
 		this.available_keys = []
 		this.available_energyLevels = []
+		this.available_apps = []
 
 		this.actions() // export actions
 		this.init_presets() // export presets
@@ -41,16 +42,20 @@ class instance extends instance_skel {
 	}
 
 	init_lgtv() {
-		// read all available keys from module
+		// read all available enums from module
 		this.available_keys = []
 		Object.keys(Keys).forEach(key => {
 			this.available_keys.push( {id: key, label: key} )
 		})
 		
-		// read all available energy saving levels from module
 		this.available_energyLevels = []
 		Object.keys(EnergySavingLevels).forEach(key => {
 			this.available_energyLevels.push( {id: key, label: key} )
+		})
+
+		this.available_apps = []
+		Object.keys(Apps).forEach(key => {
+			this.available_apps.push( {id: key, label: key} )
 		})
 		
 		this.actions() // rebuild action options
@@ -323,6 +328,19 @@ class instance extends instance_skel {
 					},
 				],
 			},
+			launchApp: {
+				label: 'Launch App',
+				options: [
+					{
+						type: 'dropdown',
+						id: 'app',
+						label: 'App:',
+						width: 3,
+						required: true,
+						choices: this.available_apps
+					},
+				],
+			},
 		})
 	}
 
@@ -350,6 +368,9 @@ class instance extends instance_skel {
 					break
 				case 'setEnergySaving':
 					await this.lgtv.setEnergySaving(eval('EnergySavingLevels.' + action.options.level))
+					break
+				case 'launchApp':
+					await this.lgtv.launchApp(eval('Apps.' + action.options.app))
 					break
 			}
 		}
