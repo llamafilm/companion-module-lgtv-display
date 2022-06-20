@@ -341,6 +341,28 @@ class instance extends instance_skel {
 					},
 				],
 			},
+			setPictureMode: {
+				label: 'Set Picture Mode',
+				options: [
+					{
+						type: 'dropdown',
+						id: 'mode',
+						label: 'Mode:',
+						width: 3,
+						required: true,
+						choices: [
+							{ id: 'vivid', label: 'Vivid' },
+							{ id: 'eco', label: 'APS' },
+							{ id: 'normal', label: 'Standard' },
+							{ id: 'game', label: 'Game' },
+							{ id: 'cinema', label: 'Cinema' },
+							{ id: 'sports', label: 'Sports' },
+							{ id: 'filmMaker', label: 'Filmmaker' },
+						],
+					},
+				],
+			},
+
 		})
 	}
 
@@ -371,6 +393,9 @@ class instance extends instance_skel {
 					break
 				case 'launchApp':
 					await this.lgtv.launchApp(eval('Apps.' + action.options.app))
+					break
+				case 'setPictureMode':
+					await this.lgtv.setPictureMode(action.options.mode)
 					break
 			}
 		}

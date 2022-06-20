@@ -20,3 +20,4 @@
 * Mute volume
 * Set energy saving level (blank screen)
 * Launch app
+* Set picture mode
